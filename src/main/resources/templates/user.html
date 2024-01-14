@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getName()}">Title</title>
+</head>
+<body>
+<p>
+    <a href="/users">Back to users list</a>
+    <br/>
+    User:
+    <span th:text="${user.getName()}">User</span>
+    <br/>
+    Followers:
+    <span th:text="${user.getFollowers().size()}">User</span>
+    <br/>
+    Following:
+    <span th:text="${user.getFollowing().size()}">User</span>
+</p>
+    <h1> Follow to: </h1>
+    <form method="post" th:if="${not #lists.isEmpty(users)}">
+        <label>
+            <select name="userToFollowId">
+                <option th:each="userToFollow : ${users}" th:value="${userToFollow.getId()}" th:text="${userToFollow.getName()}"></option>
+            </select>
+        </label>
+        <input type="submit" value="submit"/>
+    </form>
+</body>
+</html>
