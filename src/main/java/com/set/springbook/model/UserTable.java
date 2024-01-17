@@ -1,9 +1,6 @@
 package com.set.springbook.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class UserTable extends AbstractPersistable<Long> {
-    private String name;
+    private String username;
+    private String password;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> authorities;
+
     @ManyToMany
     @JoinTable(name = "user_followers"
             , joinColumns = @JoinColumn(name = "user_id")

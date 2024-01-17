@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getUsername()}">Title</title>
+</head>
+<body>
+<p>
+    <a href="/">Back to Home</a>
+    <br/>
+    User:
+    <span th:text="${user.getUsername()}">User</span>
+    <br/>
+    Followers:
+    <span th:text="${user.getFollowers().size()}">User</span>
+    <br/>
+    Following:
+    <span th:text="${user.getFollowing().size()}">User</span>
+</p>
+    <h1> Follow to: </h1>
+    <form method="post">
+        <input type="hidden" name="followId" th:value="${user.getId()}"/>
+        <input type="submit" value="submit"/>
+    </form>
+</body>
+</html>
