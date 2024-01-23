@@ -27,9 +27,11 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/h2-console", "/h2-console/**").permitAll()
                         .requestMatchers("/", "/signup").permitAll()
+                        .requestMatchers("/css/**").permitAll()
                         .anyRequest().authenticated()
-        )
+                )
                 .formLogin(withDefaults())
+
                 .logout(logout -> logout
                         .logoutSuccessUrl("/").permitAll());
 

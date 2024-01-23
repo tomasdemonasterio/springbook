@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <title th:text="${title}"></title>
+</head>
+
+<body>
+<header th:fragment="header">
+    <div class="container my-3">
+        <div class="p-1 text-center bg-body-tertiary rounded-3">
+            <h1 class="text-body-emphasis">Welcome to SpringBook</h1>
+            <p class="lead">Welcome</p>
+        </div>
+    </div>
+</header>
+<main th:fragment="main">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+    <form id="userForm" sec:authorize="isAuthenticated()">
+        <div class="form-group">
+            <textarea class="form-control m-3" id="exampleFormControlTextarea1" rows="3"
+                      placeholder="Share a post"></textarea>
+            <button type="button" class="btn btn-primary mx-3">Submit</button>
+        </div>
+    </form>
+
+
+    <div id="userFeed">
+        <p>This is the feed content.</p>
+    </div>
+    <div th:replace="fragments/userlist :: userlist(users=${users})"></div>
+</main>
+</body>
+</html>

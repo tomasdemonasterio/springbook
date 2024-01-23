@@ -1,0 +1,8 @@
+/.idea/
+/out/
+database.mv.db
+Dockerfile
+fly.toml
+HELP.md
+/src/main/resources/application.properties
+/src/main/resources/application-production.properties
