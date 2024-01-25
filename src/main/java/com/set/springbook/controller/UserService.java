@@ -2,9 +2,7 @@ package com.set.springbook.controller;
 
 import com.set.springbook.model.UserTable;
 import com.set.springbook.model.UserRepository;
-import jakarta.transaction.Transactional;
-import org.apache.catalina.Authenticator;
-import org.apache.catalina.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,19 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Controller
+@Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
@@ -49,7 +42,7 @@ public class UserService {
     public List<UserTable> ToFollowList(UserTable user) {
         List<UserTable> users = userRepository.findAll();
         users.remove(user);
-        for(UserTable u : user.getFollowing()) {
+        for (UserTable u : user.getFollowing()) {
             users.remove(u);
         }
         return users;
