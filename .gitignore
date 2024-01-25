@@ -11,3 +11,4 @@ HELP.md
 /target/classes/templates/fragments/sidebar.html
 /target/classes/public/css/style.css
 /target/classes/templates/fragments/userlist.html
+/target/
