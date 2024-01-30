@@ -10,7 +10,7 @@
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center" th:each="userTable : ${users}">
                 <div class="d-flex align-items-center">
-                    <img class="avatar avatar-lg" src="/images/avatar/1.jpg" alt=""/>
+                   <!-- <img class="avatar avatar-lg" src="/images/avatar/1.jpg" alt=""/> -->
                     <div class="ms-3">
                         <a class="fw-bold mb-0" th:href="@{/users/{id}(id=${userTable.getId()})}" th:text="${userTable.getUsername()}">test</a>
                         <p class="text-muted mb-0 fs-sm">john.doe@gmail.com</p>

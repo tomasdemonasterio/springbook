@@ -1,7 +1,7 @@
 package com.set.springbook;
 
-import com.set.springbook.model.UserRepository;
-import com.set.springbook.model.UserTable;
+import com.set.springbook.model.AccountRepository;
+import com.set.springbook.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserTable account = userRepository.findByUsername(username);
+        Account account = accountRepository.findByUsername(username);
         if (account == null) {
             throw new UsernameNotFoundException("No such user: " + username);
         }

@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserTable extends AbstractPersistable<Long> {
+public class Account extends AbstractPersistable<Long> {
     private String username;
     private String password;
     @ElementCollection(fetch = FetchType.EAGER)
@@ -22,9 +22,9 @@ public class UserTable extends AbstractPersistable<Long> {
     @JoinTable(name = "user_followers"
             , joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "follower_id"))
-    private List<UserTable> followers;
+    private List<Account> followers;
 
     @ManyToMany(mappedBy = "followers")
-    private List<UserTable> following;
+    private List<Account> following;
 
 }

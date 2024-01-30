@@ -1,7 +1,7 @@
 package com.set.springbook.controller;
 
-import com.set.springbook.model.UserTable;
-import com.set.springbook.model.UserRepository;
+import com.set.springbook.model.Account;
+import com.set.springbook.model.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,38 +19,38 @@ import java.util.Optional;
 
 
 @Service
-public class UserService {
+public class AccountService {
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<UserTable> list() {
+    public List<Account> list() {
         Pageable pageable = PageRequest.of(0, 10);
 
-        return userRepository.findAll(pageable).toList();
+        return accountRepository.findAll(pageable).toList();
     }
 
     public void add(String username, String password) {
-        UserTable user = new UserTable();
+        Account user = new Account();
         user.setUsername(username);
         user.setPassword(this.passwordEncoder.encode(password));
         user.setAuthorities(List.of("ROLE_USER"));
-        userRepository.save(user);
+        accountRepository.save(user);
     }
 
-    public List<UserTable> ToFollowList(UserTable user) {
-        List<UserTable> users = userRepository.findAll();
+    public List<Account> ToFollowList(Account user) {
+        List<Account> users = accountRepository.findAll();
         users.remove(user);
-        for (UserTable u : user.getFollowing()) {
+        for (Account u : user.getFollowing()) {
             users.remove(u);
         }
         return users;
     }
 
-    public UserTable getUser(Long id) {
-        if (userRepository.findById(id).isPresent()) {
-            return userRepository.findById(id).get();
+    public Account getUser(Long id) {
+        if (accountRepository.findById(id).isPresent()) {
+            return accountRepository.findById(id).get();
         }
         return null;
     }
@@ -59,16 +59,16 @@ public class UserService {
     public void followTo(Long followId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        UserTable user = userRepository.findByUsername(((UserDetails) auth.getPrincipal()).getUsername());
-        Optional<UserTable> followUser = userRepository.findById(followId);
+        Account user = accountRepository.findByUsername(((UserDetails) auth.getPrincipal()).getUsername());
+        Optional<Account> followUser = accountRepository.findById(followId);
         if (followUser.isPresent()
                 && !user.getFollowing().contains(followUser.get())
                 && !followUser.get().getFollowers().contains(user)
                 && !user.equals(followUser.get())) {
             user.getFollowing().add(followUser.get());
             followUser.get().getFollowers().add(user);
-            userRepository.save(followUser.get());
-            userRepository.save(user);
+            accountRepository.save(followUser.get());
+            accountRepository.save(user);
         }
     }
 }
