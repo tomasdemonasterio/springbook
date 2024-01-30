@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AccountDto {
+public class UserDto {
     private Long id;
     private String username;
     private List<Long> followers;

@@ -1,6 +1,6 @@
 package com.set.springbook.controller;
 
-import com.set.springbook.model.AccountDto;
+import com.set.springbook.model.UserDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class AccountController {
+public class UserController {
 
     @Autowired
-    private AccountService accountService;
+    private UserService userService;
 
-    @GetMapping("/accounts/{id}")
+    @GetMapping("/users/{id}")
     public String userId(@PathVariable Long id, Model model) {
-        AccountDto user = accountService.getUser(id);
+        UserDto user = userService.getUser(id);
         if (user == null) {
-            return "redirect:/accounts";
+            return "redirect:/users";
         }
-        model.addAttribute("account", user);
-        return "account";
+        model.addAttribute("user", user);
+        return "user";
     }
 
     @Transactional
-    @PostMapping("/accounts/{id}")
-    public String follow(@RequestParam Long followId) {
+    @PostMapping("/users/{id}")
+    public String follow(@PathVariable Long id, @RequestParam Long followId) {
 
-        this.accountService.followTo(followId);
+        this.userService.followTo(followId);
 
-        return "redirect:/accounts/{id}";
+        return "redirect:/users/{id}";
     }
 }

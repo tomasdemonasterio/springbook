@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Account extends AbstractPersistable<Long> {
+@Table(name = "Account")
+public class User extends AbstractPersistable<Long> {
     private String username;
 
     @JsonIgnore
@@ -30,9 +31,9 @@ public class Account extends AbstractPersistable<Long> {
     @JoinTable(name = "user_followers"
             , joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "follower_id"))
-    private List<Account> followers;
+    private List<User> followers;
 
     @JsonBackReference
     @ManyToMany(mappedBy = "followers")
-    private List<Account> following;
+    private List<User> following;
 }

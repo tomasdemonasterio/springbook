@@ -9,7 +9,7 @@
 <div th:if="${not #lists.isEmpty(users)}">
     <ul  th:each="userTable : ${users}">
         <li>
-            <a th:href="@{/users/{id}(id=${userTable.getId()})}" th:text="${userTable.getName()}">User</a>
+            <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">User</a>
         </li>
     </ul>
 </div>

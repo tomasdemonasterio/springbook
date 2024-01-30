@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SignUpController {
     @Autowired
-    private AccountService accountService;
+    private UserService userService;
 
     @GetMapping("/signup")
     public String signup() {
@@ -20,7 +20,7 @@ public class SignUpController {
     @Transactional
     @PostMapping("/signup")
     public String signupPost(@RequestParam String username, @RequestParam String password) {
-        this.accountService.add(username, password);
+        this.userService.add(username, password);
         return "redirect:/login";
     }
 }

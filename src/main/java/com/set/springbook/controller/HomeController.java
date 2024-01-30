@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     @Autowired
-    private AccountService accountService;
+    private UserService userService;
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("accounts", this.accountService.list());
+        model.addAttribute("users", this.userService.list());
 
         return "home";
     }
