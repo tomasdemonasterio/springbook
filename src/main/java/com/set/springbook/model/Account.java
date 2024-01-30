@@ -1,5 +1,6 @@
 package com.set.springbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,11 @@ import java.util.List;
 @Data
 public class Account extends AbstractPersistable<Long> {
     private String username;
+
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> authorities;
 

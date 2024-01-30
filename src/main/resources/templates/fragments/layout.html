@@ -2,39 +2,73 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.springframework.org/security/tags">
 <head th:fragment="head(title)">
+    <!-- Meta tags for character set and viewport settings -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- CDN -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- CDN -->
+
+    <!-- Custom CSS from local resource -->
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+
+
+    <!-- Dynamic title for the web page -->
     <title th:text="${title}"></title>
 </head>
 
 <body>
+<!-- Header section -->
 <header th:fragment="header">
     <div class="container my-3">
+        <!-- Stylish header with a title and description -->
         <div class="p-1 text-center bg-body-tertiary rounded-3">
             <h1 class="text-body-emphasis">Welcome to SpringBook</h1>
             <p class="lead">Welcome</p>
         </div>
     </div>
 </header>
+
+<!-- Main content section -->
 <main th:fragment="main">
+    <!-- Include sidebar content from a Thymeleaf fragment -->
     <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <!-- Form for authenticated users to share a post -->
     <form id="userForm" sec:authorize="isAuthenticated()">
         <div class="form-group">
+            <!-- Textarea for user input -->
             <textarea class="form-control m-3" id="exampleFormControlTextarea1" rows="3"
                       placeholder="Share a post"></textarea>
+            <!-- Button to submit the form -->
             <button type="button" class="btn btn-primary mx-3">Submit</button>
         </div>
     </form>
 
-
+    <!-- Placeholder content for user feed -->
     <div id="userFeed">
         <p>This is the feed content.</p>
     </div>
-    <div th:replace="fragments/accountlist :: userlist(users=${users})"></div>
+
+    <!-- Include user list content from a Thymeleaf fragment with dynamic users -->
+    <div th:replace="fragments/accountlist :: accountlist(accounts=${accounts})"></div>
 </main>
 </body>
 </html>

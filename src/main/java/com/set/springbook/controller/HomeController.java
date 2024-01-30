@@ -12,7 +12,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("users", this.accountService.list());
+        model.addAttribute("accounts", this.accountService.list());
 
         return "home";
     }

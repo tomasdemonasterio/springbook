@@ -5,14 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="userlist(users)"
-<div th:if="${not #lists.isEmpty(users)}">
+<div th:fragment="accountlist(accounts)">
+<div th:if="${not #lists.isEmpty(accounts)}">
+    <div th:replace="fragments/searchbox :: searchbox"></div>
         <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center" th:each="userTable : ${users}">
+            <li class="list-group-item d-flex justify-content-between align-items-center" th:each="account : ${accounts}">
                 <div class="d-flex align-items-center">
                    <!-- <img class="avatar avatar-lg" src="/images/avatar/1.jpg" alt=""/> -->
                     <div class="ms-3">
-                        <a class="fw-bold mb-0" th:href="@{/users/{id}(id=${userTable.getId()})}" th:text="${userTable.getUsername()}">test</a>
+                        <a class="fw-bold mb-0" th:href="@{/accounts/{id}(id=${account.getId()})}" th:text="${account.getUsername()}">test</a>
                         <p class="text-muted mb-0 fs-sm">john.doe@gmail.com</p>
                     </div>
                 </div>
@@ -21,6 +22,5 @@
         </ul>
     </div>
 </div>
-
 </body>
 </html>

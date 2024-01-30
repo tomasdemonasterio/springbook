@@ -17,23 +17,23 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/accounts/{id}")
     public String userId(@PathVariable Long id, Model model) {
         Account user = accountService.getUser(id);
         if (user == null) {
-            return "redirect:/users";
+            return "redirect:/accounts";
         }
-        model.addAttribute("user", user);
-        model.addAttribute("users", accountService.ToFollowList(user));
+        model.addAttribute("account", user);
+        model.addAttribute("accounts", accountService.ToFollowList(user));
         return "account";
     }
 
     @Transactional
-    @PostMapping("/users/{id}")
+    @PostMapping("/accounts/{id}")
     public String follow(@RequestParam Long followId) {
 
         this.accountService.followTo(followId);
 
-        return "redirect:/users/{id}";
+        return "redirect:/accounts/{id}";
     }
 }
