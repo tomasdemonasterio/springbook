@@ -1,6 +1,6 @@
 package com.set.springbook.controller;
 
-import com.set.springbook.model.Account;
+import com.set.springbook.model.AccountDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +14,12 @@ public class AccountControllerRestApi {
     private AccountService accountService;
 
     @GetMapping("/api/accounts")
-    public List<Account> getAccounts() {
+    public List<AccountDto> getAccounts() {
         return accountService.list();
     }
 
-    @GetMapping("/api/accounts/{id}")
-    public Account getAccount(@PathVariable Long id) {
+    @GetMapping("/api/account/{id}")
+    public AccountDto getAccount(@PathVariable Long id) {
         return accountService.getUser(id);
     }
 }

@@ -1,6 +1,6 @@
 package com.set.springbook.controller;
 
-import com.set.springbook.model.Account;
+import com.set.springbook.model.AccountDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,11 @@ public class AccountController {
 
     @GetMapping("/accounts/{id}")
     public String userId(@PathVariable Long id, Model model) {
-        Account user = accountService.getUser(id);
+        AccountDto user = accountService.getUser(id);
         if (user == null) {
             return "redirect:/accounts";
         }
         model.addAttribute("account", user);
-        model.addAttribute("accounts", accountService.ToFollowList(user));
         return "account";
     }
 

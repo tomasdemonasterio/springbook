@@ -1,6 +1,8 @@
 package com.set.springbook.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,13 +25,14 @@ public class Account extends AbstractPersistable<Long> {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> authorities;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(name = "user_followers"
             , joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "follower_id"))
     private List<Account> followers;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "followers")
     private List<Account> following;
-
 }
