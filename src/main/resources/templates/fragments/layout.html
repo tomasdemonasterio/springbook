@@ -39,7 +39,7 @@
 <header th:fragment="header">
     <div class="container my-3">
         <!-- Stylish header with a title and description -->
-        <div class="p-1 text-center bg-body-tertiary rounded-3">
+        <div class="p-1 text-center rounded-3" id="logo">
             <h1 class="text-body-emphasis">Welcome to SpringBook</h1>
             <p class="lead">Welcome</p>
         </div>
@@ -55,7 +55,7 @@
     <form id="userForm" sec:authorize="isAuthenticated()">
         <div class="form-group">
             <!-- Textarea for user input -->
-            <textarea class="form-control m-3" id="exampleFormControlTextarea1" rows="3"
+            <textarea class="form-control m-3" id="FormControlTextarea" rows="3"
                       placeholder="Share a post"></textarea>
             <!-- Button to submit the form -->
             <button type="button" class="btn btn-primary mx-3">Submit</button>
