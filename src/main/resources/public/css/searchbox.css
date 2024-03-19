@@ -17,3 +17,19 @@
 .form-control {
     border: 1px solid #f8c146;
 }
+
+#searchResults {
+    background-color: white;
+    border: 1px solid #ccc;
+    height: auto;
+    overflow-y: auto;
+    color: black;
+}
+
+.result-item {
+    padding: 5px;
+    cursor: pointer;
+}
+.result-item:hover {
+    background-color: #f4f4f4;
+}

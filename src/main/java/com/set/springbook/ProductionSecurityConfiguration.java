@@ -27,6 +27,7 @@ public class ProductionSecurityConfiguration {
         http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/signup").permitAll()
                         .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())

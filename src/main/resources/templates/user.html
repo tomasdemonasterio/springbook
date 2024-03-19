@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/layout :: head(title='${user.getUsername()}')"></head>
 <body>
 <header th:replace="fragments/layout :: header"></header>
@@ -15,7 +15,7 @@
     Following:
     <span th:text="${user.getFollowing().size()}" class="row">User</span>
 </p>
-<form method="post" class="container">
+<form method="post" class="container" sec:authorize="isAuthenticated()">
     <h1 class="row"> Follow to: </h1>
     <input type="hidden" name="followId" th:value="${user.getId()}"/>
     <input type="submit" value="submit" class="btn btn-primary row"/>

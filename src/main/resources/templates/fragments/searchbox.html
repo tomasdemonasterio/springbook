@@ -1,12 +1,16 @@
 <div th:fragment="searchbox" class="col">
+    <link rel="stylesheet" th:href="@{/css/searchbox.css}"/>
     <div class="row">
         <div id="searchbox" class="row p-2">
             <div class="col m-2">
-                <input type="text" class="form-control input-text" placeholder="Search user....">
+                <input id="searchInput" type="text" class="form-control input-text bg-transparent text-white" placeholder="Search user...." onfocus="this.placeholder = ''"
+                       onblur="this.placeholder = 'Search user....'">
+                <div id="searchResults"></div>
             </div>
             <div class="col-auto m-2">
                 <button class="btn btn-outline-warning btn-lg d-flex justify-content-center align-content-center" type="button"><i class="fa fa-search"></i></button>
             </div>
         </div>
     </div>
+    <script th:src="@{/javascript/searchbox.js}" defer></script>
 </div>

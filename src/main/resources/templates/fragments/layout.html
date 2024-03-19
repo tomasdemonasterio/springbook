@@ -28,10 +28,11 @@
     <!-- Custom CSS from local resource -->
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
-
-
     <!-- Dynamic title for the web page -->
     <title th:text="${title}"></title>
+
+    <!-- Custom JavaScript from local resource -->
+    <script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ '';</script>
 </head>
 
 <body>

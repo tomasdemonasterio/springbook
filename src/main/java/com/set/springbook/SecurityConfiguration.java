@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Profile("default & !production")
@@ -26,8 +27,9 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/h2-console", "/h2-console/**").permitAll()
-                        .requestMatchers("/", "/signup").permitAll()
+                        .requestMatchers("/**", "/signup").permitAll()
                         .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
